@@ -1,0 +1,23 @@
+{
+  "name": "Kavonyx Pack",
+  "version": "0.2.0",
+  "description": "Read-only view of a Kavonyx vault on BNB Smart Chain (56): the sheet in force, remaining caps, what is held at the gate, what changed since the last run, and how it would rule on a call before it is sent. Never signs.",
+  "author": "Kavonyx",
+  "license": "MIT",
+  "homepage": "",
+  "skills": [
+    {
+      "slug": "vauban-vault",
+      "path": "skills/vauban-vault",
+      "description": "Read one Kavonyx vault on BNB Smart Chain: the sheet in force, the caps left today, what is held at the gate, what changed since the last run, and a dry-run ruling on one call. Keyless, read-only.",
+      "category": "crypto",
+      "schedule": "0 */6 * * *",
+      "default_enabled": false,
+      "secrets_required": [],
+      "capabilities": [
+        "read_only",
+        "sends_notifications"
+      ]
+    }
+  ]
+}
