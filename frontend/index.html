@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kavonyx — Your agent. Your rules.</title>
+<meta name="description" content="Kavonyx is an owner-controlled vault framework for autonomous agents on BNB Smart Chain. Spending limits, contract permissions, delayed execution, and an emergency pause.">
+<meta name="theme-color" content="#10120F">
+<meta property="og:title" content="Kavonyx — Your agent. Your rules.">
+<meta property="og:description" content="Kavonyx is an owner-controlled vault framework for autonomous agents on BNB Smart Chain. Spending limits, contract permissions, delayed execution, and an emergency pause.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kavonyx">
+<meta property="og:image" content="/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/og.png">
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=25">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Kavonyx — home"><svg class="mark" viewBox="164 156 696 700" aria-hidden="true"><path fill="#F0B90B" d="M354 164H452V401H409V448H172V338H354Z"/><path fill="#F0B90B" d="M669 164H571V401H614V448H851V338H669Z"/><path fill="#F0B90B" d="M354 846H452V609H409V562H172V672H354Z"/><path fill="#F0B90B" d="M669 846H571V609H614V562H851V672H669Z"/></svg><span class="wordmark">KAVONYX</span></a>
+    <nav class="links" aria-label="Primary"><a href="/">Home</a><a href="/works/">The works</a><a href="/drawing/">The drawing</a><a href="/construction/">Construction</a><a href="/name/">The name</a><a href="/table/">Owner's table</a></nav>
+    <span class="chain-chip">BSC · 56</span>
+    <button class="menu" type="button" aria-expanded="false" aria-label="Menu">MENU</button>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand small" href="/"><svg class="mark" viewBox="164 156 696 700" aria-hidden="true"><path fill="#F0B90B" d="M354 164H452V401H409V448H172V338H354Z"/><path fill="#F0B90B" d="M669 164H571V401H614V448H851V338H669Z"/><path fill="#F0B90B" d="M354 846H452V609H409V562H172V672H354Z"/><path fill="#F0B90B" d="M669 846H571V609H614V562H851V672H669Z"/></svg><span class="wordmark">KAVONYX</span></a>
+        <p class="lead">Owner-controlled transaction limits for autonomous agents on BNB Smart Chain. Four ramparts between an agent and its wallet, drawn once and held by the owner.</p>
+      </div>
+      <div><h4>Sheets</h4><a href="/">Home</a><a href="/works/">The works</a><a href="/drawing/">The drawing</a><a href="/construction/">Construction</a><a href="/name/">The name</a></div>
+      <div><h4>Ramparts</h4><a href="/works/#ditch">Ditch</a><a href="/works/#curtain">Curtain</a><a href="/works/#gate">Gate</a><a href="/works/#keep">Keep</a></div>
+      <div><h4>Status</h4><a href="/construction/">What is built</a><a href="/construction/#faq">Questions</a><a href="/table/">Owner's table</a><a class="ext" id="linkGithub">GitHub</a><a class="ext" id="linkTelegram">Telegram</a><a class="ext" id="linkX">X</a></div>
+    </div>
+    <div class="foot-in">
+      <p>An independent project built for BNB Smart Chain. Not affiliated with Binance or BNB Chain.</p>
+      <p>Nothing on these sheets is financial advice.</p>
+    </div>
+  </div>
+</footer>
+<script type="application/json" id="routeData">
+[
+  {
+    "path": "/",
+    "title": "Kavonyx — Your agent. Your rules.",
+    "desc": "Kavonyx is an owner-controlled vault framework for autonomous agents on BNB Smart Chain. Spending limits, contract permissions, delayed execution, and an emergency pause.",
+    "plate": "PLATE I · GENERAL PLAN",
+    "script": "/fort.js?v=5"
+  },
+  {
+    "path": "/works/",
+    "title": "The works — Kavonyx",
+    "desc": "The four ramparts of Kavonyx in detail: ditch (spend caps), curtain (contract allowlist), gate (time-lock) and keep (kill switch).",
+    "plate": "SHEET II · THE WORKS",
+    "script": ""
+  },
+  {
+    "path": "/drawing/",
+    "title": "The drawing — Kavonyx",
+    "desc": "One policy sheet, read by the chain: its fields, the order rulings are made in, and why the agent can never redraw it.",
+    "plate": "SHEET III · THE DRAWING",
+    "script": ""
+  },
+  {
+    "path": "/construction/",
+    "title": "Construction — Kavonyx",
+    "desc": "What is built, what is being built, and what is not started. An honest status of the Kavonyx works on BNB Smart Chain.",
+    "plate": "SHEET IV · CONSTRUCTION",
+    "script": ""
+  },
+  {
+    "path": "/name/",
+    "title": "The name — Kavonyx",
+    "desc": "Kavonyx is an owner-controlled vault framework for autonomous agents on BNB Smart Chain. Your agent. Your rules.",
+    "plate": "SHEET V · THE NAME",
+    "script": ""
+  },
+  {
+    "path": "/table/",
+    "title": "Owner's table — Kavonyx",
+    "desc": "Read a Kavonyx vault on BNB Smart Chain: keep state, caps, spend today and moves held at the gate. Owners can freeze and drop the gate from their own wallet.",
+    "plate": "SHEET VI · OWNER'S TABLE",
+    "script": "/table.js?v=5"
+  }
+]
+</script>
+<template data-route="/">
+<div class="view">
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="kicker">Your agent. Your rules.</p>
+      <h1>The fort you build<br>around an agent<br><span class="ink">before you hand it a key.</span></h1>
+      <p class="lede">Autonomous agents run unattended and sign their own transactions. Kavonyx is the earthwork between the agent and its wallet on BNB Smart Chain — four ramparts a transaction must cross before it reaches the chain. Drawn once. Held by you.</p>
+      <div class="cta">
+        <a class="btn" href="/works/">Walk the ramparts</a>
+        <a class="btn ghost" href="/drawing/">Read the drawing</a>
+      </div>
+      <div class="ca-bar" id="caBar">
+        <span class="ca-live"><span class="ca-dot"></span><span id="caTicker">$KVNX</span></span>
+        <code class="ca-addr" id="caAddr"><span class="ca-addr-main">0x00000000000000000000000000000000000</span><span class="ca-addr-tail">00000</span></code>
+        <span class="ca-actions">
+          <button class="ca-copy" id="caCopy" type="button">Copy</button>
+          <button class="ca-link" id="caBuy" type="button" data-url="https://gmgn.ai/bsc/token/0x0000000000000000000000000000000000000000">Buy</button>
+        </span>
+      </div>
+    </div>
+    <figure class="plate" aria-label="Plan of the fort: four ramparts guarding the keep">
+      <canvas id="fort" width="560" height="560"></canvas>
+      <figcaption>Fig. 1 — general plan. A transaction approaches from open ground and is tested at each rampart. Illustrative.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" aria-label="Summary">
+  <div class="wrap band-in">
+    <div><b>IV</b><span>ramparts, every tx crosses all</span></div>
+    <div><b>0</b><span>approval prompts</span></div>
+    <div><b>I</b><span>kill switch, owner-held</span></div>
+    <div><b>∞</b><span>runs unattended</span></div>
+  </div>
+</section>
+
+<section class="brand-band" aria-label="Kavonyx">
+  <div class="wrap brand-band-in">
+    <img src="/kavonyx-mark.jpg" width="1024" height="1024" alt="Kavonyx four-guard vault mark">
+    <div>
+      <p class="kicker">Kavonyx</p>
+      <h2 class="disp">Your agent. Your rules.</h2>
+      <p class="lede">Owner-controlled transaction limits for autonomous agents on BNB Smart Chain. The owner draws the sheet. The agent works inside it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="siege">
+  <div class="wrap">
+    <p class="kicker">The siege</p>
+    <h2 class="disp">An agent with a raw key holds no ground. It simply has the key.</h2>
+    <div class="three">
+      <article>
+        <span class="rn">i.</span>
+        <h3>It never sleeps</h3>
+        <p>Cron keeps the agent working through the night. A single bad instruction repeats on every tick until a human happens to look.</p>
+      </article>
+      <article>
+        <span class="rn">ii.</span>
+        <h3>A key is total</h3>
+        <p>Hand over a private key and the agent can do anything the key can — drain, grant infinite approval, bridge the balance out.</p>
+      </article>
+      <article>
+        <span class="rn">iii.</span>
+        <h3>Asking defeats it</h3>
+        <p>Signing every move by hand turns autonomy back into a chat window. The answer is standing walls, not a sentry you have to wake.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="kicker">Four ramparts</p>
+    <h2 class="disp">A transaction crosses every one, or it never lands.</h2>
+    <ol class="ramparts">
+      <li><span class="rn">01</span><div><h3>The ditch — spend caps</h3><p>Per-transaction, per-hour and per-day ceilings. A runaway loop fills the ditch and goes no further.</p></div></li>
+      <li><span class="rn">02</span><div><h3>The curtain — contract allowlist</h3><p>Only named contracts and functions pass. Unknown targets and infinite approvals are turned back.</p></div></li>
+      <li><span class="rn">03</span><div><h3>The gate — time-lock</h3><p>Large moves wait in the gatehouse. You have a window to drop the portcullis.</p></div></li>
+      <li><span class="rn">04</span><div><h3>The keep — kill switch</h3><p>One owner-only command seals the works. The agent cannot open it from inside.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker">The sheets</p>
+    <h2 class="disp">Five sheets make up the full set of drawings.</h2>
+    <nav class="index" aria-label="Sheets">
+      <a href="/works/"><span class="rn">Sheet II</span><h3>The works</h3><p>Each rampart in detail: what it stops, what it lets through, and how they combine.</p><span class="go">Open sheet</span></a>
+      <a href="/drawing/"><span class="rn">Sheet III</span><h3>The drawing</h3><p>The order of works — one policy sheet, its fields, and the order rulings are made in.</p><span class="go">Open sheet</span></a>
+      <a href="/construction/"><span class="rn">Sheet IV</span><h3>Construction</h3><p>What is dug, what is drawn, and what is not yet started. No inflated claims.</p><span class="go">Open sheet</span></a>
+      <a href="/name/"><span class="rn">Sheet V</span><h3>The name</h3><p>Kavonyx, the tagline, and the fortification method the ramparts follow.</p><span class="go">Open sheet</span></a>
+      <a href="/table/"><span class="rn">Sheet VI</span><h3>Owner's table</h3><p>Read a vault from BNB Smart Chain. Owners can seal the keep and drop the gate from their own wallet.</p><span class="go">Open sheet</span></a>
+    </nav>
+  </div>
+</section>
+</div>
+</template>
+<template data-route="/works/">
+<div class="view">
+<section class="phead">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap phead-in">
+    <div>
+      <p class="crumbs"><a href="/">General plan</a> / The works</p>
+      <p class="kicker">Sheet II</p>
+      <h1>Four ramparts,<br><span class="ink">in section.</span></h1>
+      <p class="lede">Each rampart answers one question about a transaction. A transaction lands only if every answer is yes. They are checked in order, outermost first, and the first refusal ends the approach.</p>
+    </div>
+    <div class="sheet">Scale <b>1 : tx</b><br>Ramparts <b>IV</b><br>Drawn <b>owner</b></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <article class="rampart" id="ditch">
+      <svg viewBox="0 0 260 200" aria-hidden="true">
+        <path d="M0 150 H70 L90 175 H170 L190 150 H260" fill="none" stroke="#10120F" stroke-width="2"/>
+        <path d="M90 175 H170" stroke="#F0B90B" stroke-width="3"/>
+        <path d="M95 160 H165" stroke="#10120F" stroke-dasharray="4 4"/>
+        <text x="130" y="195" text-anchor="middle" font-family="monospace" font-size="10" fill="#5E6356">CAP · 1.00 BNB / DAY</text>
+        <path d="M20 60 h40 M40 40 v40" stroke="#10120F" stroke-width="1.4"/>
+        <text x="20" y="105" font-family="monospace" font-size="10" fill="#5E6356">perTx · perHour · perDay</text>
+      </svg>
+      <div>
+        <span class="rn">01</span>
+        <h2>The ditch — spend caps</h2>
+        <p>The outermost line. Every transfer of value is counted against ceilings per transaction, per hour and per day. When a ceiling is reached the ditch is full: nothing more crosses until the window rolls over. This is what stops a loop that repeats a bad instruction on every cron tick.</p>
+        <dl class="stops">
+          <div><dt>Stops</dt><dd>Runaway loops, drain-by-repetition, a single oversized send</dd></div>
+          <div><dt>Lets through</dt><dd>Normal activity under the ceiling, without asking anyone</dd></div>
+          <div><dt>Counted in</dt><dd>Native BNB and listed tokens, each with its own ceiling</dd></div>
+          <div><dt>Changed by</dt><dd>Owner only. The agent cannot raise its own cap</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="rampart" id="curtain">
+      <svg viewBox="0 0 260 200" aria-hidden="true">
+        <rect x="20" y="60" width="220" height="80" fill="none" stroke="#10120F" stroke-width="2"/>
+        <rect x="110" y="60" width="40" height="80" fill="#F3F0E6" stroke="#10120F" stroke-width="2"/>
+        <path d="M60 30 V60 M200 30 V60" stroke="#F0B90B" stroke-width="2"/>
+        <path d="M54 22 l12 12 M66 22 l-12 12 M194 22 l12 12 M206 22 l-12 12" stroke="#F0B90B" stroke-width="2"/>
+        <path d="M130 20 V60" stroke="#10120F" stroke-width="2" marker-end=""/>
+        <text x="130" y="165" text-anchor="middle" font-family="monospace" font-size="10" fill="#5E6356">ONE GATE · NAMED TARGETS</text>
+      </svg>
+      <div>
+        <span class="rn">02</span>
+        <h2>The curtain — contract allowlist</h2>
+        <p>A continuous wall with one gate. The agent may call only the contracts you named, and only the functions you named on them. Everything else meets the wall. Unlimited token approvals are refused outright, because an infinite approval is a hole in the curtain that outlives the transaction.</p>
+        <dl class="stops">
+          <div><dt>Stops</dt><dd>Unknown contracts, approve(MAX), calls to functions you did not list</dd></div>
+          <div><dt>Lets through</dt><dd>Listed contract + listed function, e.g. router buy/sell</dd></div>
+          <div><dt>Matched by</dt><dd>Address and 4-byte selector, not by name</dd></div>
+          <div><dt>Changed by</dt><dd>Owner only</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="rampart" id="gate">
+      <svg viewBox="0 0 260 200" aria-hidden="true">
+        <path d="M70 170 V60 Q130 10 190 60 V170" fill="none" stroke="#10120F" stroke-width="2"/>
+        <path d="M85 70 V150 M105 55 V150 M125 48 V150 M145 48 V150 M165 55 V150 M180 65 V150" stroke="#10120F" stroke-width="1.4"/>
+        <path d="M78 100 H182 M78 130 H182" stroke="#10120F" stroke-width="1.4"/>
+        <path d="M78 150 H182" stroke="#F0B90B" stroke-width="3"/>
+        <text x="130" y="190" text-anchor="middle" font-family="monospace" font-size="10" fill="#5E6356">HOLD &gt; 0.50 BNB · 6h</text>
+      </svg>
+      <div>
+        <span class="rn">03</span>
+        <h2>The gate — time-lock</h2>
+        <p>Moves above a threshold are not refused — they are held in the gatehouse for a fixed delay. During that window the owner can drop the portcullis and cancel. If nobody does, it can be released once the delay has passed. Autonomy is kept; surprise is removed.</p>
+        <dl class="stops">
+          <div><dt>Holds</dt><dd>Anything over the threshold you set</dd></div>
+          <div><dt>Releases</dt><dd>By agent or owner once the delay expires</dd></div>
+          <div><dt>Cancelled by</dt><dd>Owner, at any time before release</dd></div>
+          <div><dt>Visible as</dt><dd>A queued ruling with its release time</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="rampart" id="keep">
+      <svg viewBox="0 0 260 200" aria-hidden="true">
+        <rect x="80" y="50" width="100" height="110" fill="none" stroke="#10120F" stroke-width="2"/>
+        <path d="M80 50 v-14 h16 v14 M112 50 v-14 h16 v14 M148 50 v-14 h16 v14" fill="none" stroke="#10120F" stroke-width="2"/>
+        <rect x="116" y="115" width="28" height="45" fill="#F0B90B"/>
+        <text x="130" y="185" text-anchor="middle" font-family="monospace" font-size="10" fill="#5E6356">FREEZE · OWNER ONLY</text>
+      </svg>
+      <div>
+        <span class="rn">04</span>
+        <h2>The keep — kill switch</h2>
+        <p>The last place to retreat to. One owner-only command freezes every outgoing transaction at once — including anything waiting at the gate. The agent sits inside the walls and has no key to the keep; it cannot lift the freeze, and it cannot remove the owner.</p>
+        <dl class="stops">
+          <div><dt>Freezes</dt><dd>All outgoing value and all queued moves</dd></div>
+          <div><dt>Lifted by</dt><dd>Owner only</dd></div>
+          <div><dt>Agent can</dt><dd>Nothing — not pause, unpause, or reassign</dd></div>
+          <div><dt>Intended for</dt><dd>Compromised prompt, leaked key, bad skill update</dd></div>
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="kicker">Rulings</p>
+    <h2 class="disp">How the four combine on real approaches.</h2>
+    <div class="table-wrap">
+      <table class="matrix">
+        <thead><tr><th>Approach</th><th>Ditch</th><th>Curtain</th><th>Gate</th><th>Keep</th><th>Ruling</th></tr></thead>
+        <tbody>
+          <tr><td>buy 0.04 BNB on listed router</td><td>under cap</td><td>listed</td><td>below threshold</td><td>open</td><td class="v-pass">PASSED</td></tr>
+          <tr><td>approve(MAX) to unknown address</td><td>—</td><td>refused</td><td>—</td><td>—</td><td class="v-block">TURNED BACK</td></tr>
+          <tr><td>same buy, 40th time this hour</td><td>cap reached</td><td>—</td><td>—</td><td>—</td><td class="v-block">TURNED BACK</td></tr>
+          <tr><td>send 0.80 BNB to treasury</td><td>under cap</td><td>listed</td><td>over 0.50</td><td>open</td><td class="v-hold">HELD 6h</td></tr>
+          <tr><td>any move after owner freeze</td><td>—</td><td>—</td><td>—</td><td>sealed</td><td class="v-block">TURNED BACK</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="next"><span>Next sheet</span><a href="/drawing/">The drawing</a></div>
+</section>
+</div>
+</template>
+<template data-route="/drawing/">
+<div class="view">
+<section class="phead">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap phead-in">
+    <div>
+      <p class="crumbs"><a href="/">General plan</a> / The drawing</p>
+      <p class="kicker">Sheet III</p>
+      <h1>One sheet.<br><span class="ink">Drawn by a human, read by the chain.</span></h1>
+      <p class="lede">Every limit lives on a single order of works. The owner draws it; the agent works inside it. Each revision is numbered on-chain, so the sheet in force can always be traced.</p>
+    </div>
+    <div class="sheet">Format <b>order-of-works</b><br>Revisions <b>numbered</b><br>Written by <b>owner</b></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div>
+      <p class="kicker">Example sheet</p>
+      <h2 class="disp">Readable at a glance. No hidden clauses.</h2>
+      <p class="muted">The sheet uses the same four words as the fort. If you can read the plan, you can read the policy. Values below are an example for a trading agent, not defaults.</p>
+      <ul class="ticks">
+        <li>Plain fields, one rampart per line</li>
+        <li>Targets matched by address and selector</li>
+        <li>Only the owner can revise it</li>
+      </ul>
+    </div>
+    <pre class="draft" aria-label="Example order of works"><code><span class="c">; order-of-works — kavonyx.policy</span>
+<span class="c">; rev 3 · owner-only</span>
+
+<span class="k">agent</span>    growth-01
+<span class="k">ditch</span>    perTx 0.10 BNB   perDay 1.00 BNB
+<span class="k">curtain</span>  allow Router[buy,sell]
+         allow Token[transfer]
+         <span class="c">; approve(MAX) always refused</span>
+<span class="k">gate</span>     hold > 0.50 BNB   delay 6h
+<span class="k">keep</span>     owner 0xYourWallet…   freeze owner-only</code></pre>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker">Fields</p>
+    <h2 class="disp">Every field on the sheet.</h2>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th>Field</th><th>Rampart</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>agent</code></td><td>—</td><td>The signer this sheet governs. One sheet per agent.</td></tr>
+          <tr><td><code>ditch.perTx</code></td><td>Ditch</td><td>Largest value a single transaction may move.</td></tr>
+          <tr><td><code>ditch.perHour / perDay</code></td><td>Ditch</td><td>Ceilings per clock hour and UTC day. Reaching one fills the ditch until the next window opens.</td></tr>
+          <tr><td><code>curtain.allow</code></td><td>Curtain</td><td>Contract address plus the function selectors permitted on it.</td></tr>
+          <tr><td><code>approve(MAX)</code></td><td>Curtain</td><td>Unlimited approvals are refused by the contract itself, whatever the allow list says.</td></tr>
+          <tr><td><code>gate.hold</code></td><td>Gate</td><td>Threshold above which a move is queued instead of sent.</td></tr>
+          <tr><td><code>gate.delay</code></td><td>Gate</td><td>How long a held move waits before the agent or owner may release it.</td></tr>
+          <tr><td><code>keep.owner</code></td><td>Keep</td><td>The only address that may revise the sheet, cancel, or freeze.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="kicker">Order of ruling</p>
+    <h2 class="disp">The same five steps, every transaction, every time.</h2>
+    <ol class="order">
+      <li><h3>Keep</h3><p>Is the fort sealed? If frozen, turned back immediately.</p></li>
+      <li><h3>Curtain</h3><p>Is the target and function on the sheet? Unlimited approvals never pass.</p></li>
+      <li><h3>Ditch</h3><p>Does the value fit under every ceiling?</p></li>
+      <li><h3>Gate</h3><p>Is it over the hold threshold? If so, queue with a release time.</p></li>
+      <li><h3>Land</h3><p>Sent, and logged on-chain. A refusal reverts with the rampart that stopped it.</p></li>
+    </ol>
+    <p class="muted" style="margin-top:28px;max-width:720px">The keep is checked first, even though it is the innermost work: a sealed fort turns everything back without spending effort on the other ramparts.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="next"><span>Next sheet</span><a href="/construction/">Construction</a></div>
+</section>
+</div>
+</template>
+<template data-route="/construction/">
+<div class="view">
+<section class="phead">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap phead-in">
+    <div>
+      <p class="crumbs"><a href="/">General plan</a> / Construction</p>
+      <p class="kicker">Sheet IV</p>
+      <h1>What is dug,<br><span class="ink">and what is only drawn.</span></h1>
+      <p class="lede">A fort that is only on paper protects nothing. This sheet says plainly which works stand and which do not yet.</p>
+    </div>
+    <div class="sheet">Updated <b>2026-11</b><br>Audited <b>not yet</b><br>Mainnet <b>not deployed</b></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker">Order of construction</p>
+    <h2 class="disp">Four phases. All drawn, none yet audited.</h2>
+    <div class="status">
+      <div><span class="phase">I</span><div><h3>The drawing</h3><p>Policy sheet format, the ruling model, the order of ruling, and these sheets.</p></div><span class="pill done">Standing</span></div>
+      <div><span class="phase">II</span><div><h3>Vault contract</h3><p>All four ramparts written and passing 36 tests, including fuzzing on the day cap and unlisted targets and reentrancy through every entry point. CI runs them on every push. Not yet audited. Not deployed on BNB Smart Chain. No reference vault is published, and no real funds should be sent to anything claiming to be one.</p></div><span class="pill wip">In test</span></div>
+      <div><span class="phase">III</span><div><h3>Agent SDK</h3><p>TypeScript on viem, aimed at BNB Smart Chain. Every move is simulated first, so a refusal comes back with the rampart that stopped it before any gas is spent. Passing end-to-end tests against a local chain. Native gas is BNB; on testnet it is tBNB.</p></div><span class="pill wip">In test</span></div>
+      <div><span class="phase">IV</span><div><h3>Owner's table</h3><p>Reads a vault from BNB Smart Chain; owners can seal the keep and drop the gate from their own wallet. <a href="/table/" style="text-decoration:underline">Open the table</a>.</p></div><span class="pill wip">In test</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="faq">
+  <div class="wrap">
+    <p class="kicker">Questions</p>
+    <h2 class="disp">Asked before the walls go up.</h2>
+    <div class="faq">
+      <details><summary>Is Kavonyx live on BNB Smart Chain?</summary><p>The vault contract is written and tested. It is not deployed on BNB Smart Chain, and it is not audited. There is no reference vault to open. Do not send real funds to anything claiming to be a Kavonyx vault.</p></details>
+      <details><summary>Is KVNX deployed?</summary><p>No. KVNX is the proposed token symbol for Kavonyx. There is no published contract, supply, or liquidity. Do not send funds to an address that claims to be KVNX.</p></details>
+      <details><summary>Does Kavonyx hold my funds?</summary><p>The design is that funds sit in a vault you own; Kavonyx rules on what may leave it. The owner key never goes to the agent and never goes to us.</p></details>
+      <details><summary>Is this a scanner?</summary><p>No. Kavonyx does not try to guess whether a contract is good or bad. It enforces limits you set, whatever the agent is told to do. A scanner can be fooled by a new trick; a cap cannot.</p></details>
+      <details><summary>Will it slow my agent down?</summary><p>Only at the gate, and only for moves you decided are large enough to wait. Everything under the threshold lands without delay and without a prompt.</p></details>
+      <details><summary>Is the fort in the animation real data?</summary><p>No. Figure 1 on the general plan is an illustration of how rulings work. It is labelled as such.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="next"><span>Next sheet</span><a href="/name/">The name</a></div>
+</section>
+</div>
+</template>
+<template data-route="/name/">
+<div class="view">
+<section class="phead">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap phead-in">
+    <div>
+      <p class="crumbs"><a href="/">General plan</a> / The name</p>
+      <p class="kicker">Sheet V</p>
+      <h1>Kavonyx.<br><span class="ink">Your agent. Your rules.</span></h1>
+      <p class="lede">Kavonyx is the name of this vault framework. The owner sets the rules; the agent works inside them, on BNB Smart Chain. The mark is four guards around an open centre. It is not a letter.</p>
+    </div>
+    <div class="sheet">Name <b>Kavonyx</b><br>Symbol <b>KVNX, proposed</b><br>Chain <b>BSC</b></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <blockquote class="quote">Your agent. Your rules. The owner draws the sheet. The chain reads it. The agent does not redraw it.<cite>Kavonyx</cite></blockquote>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="kicker">The method, our ramparts</p>
+    <h2 class="disp">Three rules from fortification that still hold.</h2>
+    <div class="prin">
+      <article>
+        <span class="rn">i.</span>
+        <h3>No dead ground</h3>
+        <p>Bastions were angled so that every metre of wall could be covered by fire from another. No approach went unwatched.</p>
+        <span class="then">In Kavonyx</span>
+        <p>Every transaction is ruled on. There is no path to the wallet that skips the ramparts.</p>
+      </article>
+      <article>
+        <span class="rn">ii.</span>
+        <h3>Defence in depth</h3>
+        <p>Ditch, covered way, ravelin, curtain, then the keep. Losing one line did not lose the fort.</p>
+        <span class="then">In Kavonyx</span>
+        <p>Four independent ramparts. A bad prompt that slips past the allowlist still meets the cap and the gate.</p>
+      </article>
+      <article>
+        <span class="rn">iii.</span>
+        <h3>Know the siege</h3>
+        <p>The forts that lasted were designed against the way a place is actually taken.</p>
+        <span class="then">In Kavonyx</span>
+        <p>Designed against how agents actually fail: loops, injected instructions, infinite approvals, leaked keys.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker">The story</p>
+    <h2 class="disp">An agent holds a key. Kavonyx holds the ground.</h2>
+    <p class="muted" style="max-width:720px;margin:-32px 0 36px">Kavonyx is the vault an owner draws around an autonomous agent on BNB Smart Chain. The owner sets the rules once. The agent works inside them and cannot redraw the sheet. Figure 1 shows that approach. It is an illustration. KVNX is a proposed symbol. It is not a deployed token.</p>
+    <ol class="chron">
+      <li><b>Agent</b><p>Works unattended and signs its own transactions. A raw key can drain, approve without limit, or send the balance out.</p></li>
+      <li><b>Owner</b><p>Draws one sheet. Only the owner can revise it, cancel a held move, or seal the keep.</p></li>
+      <li><b>Ditch</b><p>Counts every transfer against ceilings per transaction, per hour, and per day.</p></li>
+      <li><b>Curtain</b><p>Lets through only named contracts and functions. Unlimited approvals are refused.</p></li>
+      <li><b>Gate</b><p>Holds a large move until the delay passes. The owner can drop it before then.</p></li>
+      <li><b>Keep</b><p>One owner command freezes every outgoing move. The agent cannot lift it.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="next"><span>Back to</span><a href="/">The general plan</a></div>
+</section>
+</div>
+</template>
+<template data-route="/table/">
+<div class="view">
+<section class="phead">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap phead-in">
+    <div>
+      <p class="crumbs"><a href="/">General plan</a> / Owner's table</p>
+      <p class="kicker">Sheet VI</p>
+      <h1>The owner's table.<br><span class="ink">Read the fort, seal it if you must.</span></h1>
+      <p class="lede">Paste a vault address to read its state from BNB Smart Chain. Native gas is BNB; on testnet the same vault would use tBNB. If your wallet is the owner, you can freeze the keep and drop the gate on held moves. Nothing here can move funds out.</p>
+    </div>
+    <div class="sheet">Chain <b>BSC · 56</b><br>Writes <b>your wallet</b><br>Keys held <b>none</b></div>
+  </div>
+</section>
+
+<section class="sec table-sec">
+  <div class="wrap">
+    <form class="vform" id="vForm">
+      <label for="vAddr">Vault address</label>
+      <div class="vrow">
+        <input id="vAddr" name="vault" placeholder="0x…" autocomplete="off" spellcheck="false" inputmode="latin" pattern="0x[0-9a-fA-F]{40}" required>
+        <button class="btn" type="submit">Read</button>
+        <button class="btn ghost-d" id="bConnect" type="button">Connect wallet</button>
+      </div>
+      <p class="tstatus" id="tStatus" role="status" aria-live="polite">No vault open. Kavonyx is not audited, and no vault is published on BNB Smart Chain yet. Paste one you deployed yourself.</p>
+    </form>
+
+    <div id="tBody" hidden>
+      <p class="whoami" id="whoami"></p>
+      <div class="tgrid">
+        <article class="tcard">
+          <h3>Keep</h3>
+          <p class="big" id="sKeep" data-kind="">—</p>
+          <div id="ownerCtl" hidden>
+            <button class="btn" id="bFreeze" type="button">Seal the keep</button>
+            <button class="btn ghost-d" id="bUnfreeze" type="button" hidden>Unseal</button>
+          </div>
+        </article>
+        <article class="tcard">
+          <h3>Ditch · BNB</h3>
+          <p id="sCaps">—</p>
+          <div class="bar"><span id="capFill"></span></div>
+          <p class="small" id="sSpent">—</p>
+        </article>
+        <article class="tcard">
+          <h3>Gate</h3>
+          <p id="sHold">—</p>
+          <p class="small">delay <span id="sDelay">—</span></p>
+        </article>
+        <article class="tcard">
+          <h3>Vault</h3>
+          <p id="sBal">—</p>
+          <p class="small" id="sRev">—</p>
+        </article>
+      </div>
+
+      <dl class="ledger tledger">
+        <div><dt>Owner</dt><dd id="sOwner">—</dd></div>
+        <div><dt>Agent</dt><dd id="sAgent">—</dd></div>
+      </dl>
+
+      <form class="vform rform" id="rForm">
+        <h2 class="disp" style="margin:0 0 6px">Rule a call</h2>
+        <p class="small rnote">Ask this vault how it would rule on one call from its agent, before anything is signed. One read-only call; no wallet needed.</p>
+        <div class="rgrid">
+          <label>Target<input id="rTo" placeholder="0x…" autocomplete="off" spellcheck="false" required></label>
+          <label>Value (BNB)<input id="rValue" placeholder="0" inputmode="decimal" autocomplete="off"></label>
+          <label class="wide">Calldata<input id="rData" placeholder="0x (empty for a plain BNB send)" autocomplete="off" spellcheck="false"></label>
+        </div>
+        <div class="vrow"><button class="btn" type="submit">Rule</button></div>
+        <p class="rverdict" id="rOut" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="heldhead">
+        <h2 class="disp" style="margin:0">Held at the gate <span class="count" id="heldCount">0</span></h2>
+        <button class="btn ghost-d" id="bRefresh" type="button">Refresh</button>
+      </div>
+      <ul class="held" id="heldList"></ul>
+    </div>
+  </div>
+</section>
+</div>
+</template>
+<script src="/app.js?v=12" defer></script>
+</body>
+</html>
