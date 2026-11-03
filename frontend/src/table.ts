@@ -1,0 +1,242 @@
+// Owner's table: browser bundle. Reads a vault over RPC; writes only through the user's own injected wallet.
+import {
+  type Address, type EIP1193Provider, type Hex,
+  createPublicClient, createWalletClient, custom, formatEther, getAddress, http, isAddress, isHex, parseEther,
+} from "viem";
+import { type HeldMove, NATIVE_SYMBOL, LOG_HISTORY, bscChain, readState, listHeld, toRefused, Refused, vaubanVaultAbi, NATIVE } from "../../backend/src/index.ts";
+
+declare global {
+  interface Window {
+    ethereum?: EIP1193Provider;
+    mountTable?: () => void;
+  }
+}
+
+const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+// ?rpc= override is honoured only on localhost, for testing against anvil.
+const local = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const rpcOverride = local ? new URLSearchParams(location.search).get("rpc") : null;
+const pub = createPublicClient({
+  chain: bscChain,
+  transport: http(rpcOverride && /^http:\/\/127\.0\.0\.1:\d+$/.test(rpcOverride) ? rpcOverride : undefined),
+});
+let vault: Address | null = null;
+let me: Address | null = null;
+let seq = 0;
+
+function setText(id: string, v: string) { $(id).textContent = v; }
+
+function status(msg: string, kind: "ok" | "err" | "" = "") {
+  const el = $("tStatus");
+  el.textContent = msg;
+  el.dataset.kind = kind;
+}
+
+function short(a: string) { return a.slice(0, 6) + "…" + a.slice(-4); }
+
+function setAddr(id: string, a: string) {
+  const el = $(id);
+  el.replaceChildren();
+  const link = document.createElement("a");
+  link.href = `${bscChain.blockExplorers.default.url}/address/${a}`;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = short(a);
+  el.append(link);
+}
+
+async function load() {
+  if (!vault) return;
+  const mine = ++seq;
+  status("Reading vault…");
+  try {
+    const [chainId, code] = await Promise.all([pub.getChainId(), pub.getCode({ address: vault })]);
+    if (chainId !== bscChain.id) throw new Error(`This reader is on chain ${chainId}, not BNB Smart Chain (56).`);
+    if (!code || code === "0x") throw new Error("No contract at this address on BNB Smart Chain.");
+    const [s, eth, sp] = await Promise.all([
+      readState(pub, vault),
+      pub.readContract({ address: vault, abi: vaubanVaultAbi, functionName: "limits", args: [NATIVE] }),
+      pub.readContract({ address: vault, abi: vaubanVaultAbi, functionName: "spent", args: [NATIVE] }),
+    ]);
+    const held = await fetchHeld(s.gateDelay);
+    // a newer load started while we were reading; let it render
+    if (mine !== seq) return;
+
+    setAddr("sOwner", s.owner);
+    setAddr("sAgent", s.agent);
+    setText("sBal", formatEther(s.balance) + " " + NATIVE_SYMBOL);
+    setText("sRev", "rev " + s.revision);
+    setText("sDelay", Number(s.gateDelay) / 3600 + " h");
+    setText("sKeep", s.frozen ? "SEALED" : "OPEN");
+    $("sKeep").dataset.kind = s.frozen ? "err" : "ok";
+    setText("sCaps", eth[0]
+      ? `${formatEther(eth[1])} / tx · ${formatEther(eth[2])} / h · ${formatEther(eth[3])} / day`
+      : `not set — ${NATIVE_SYMBOL} cannot move`);
+    const today = BigInt(Math.floor(Date.now() / 86_400_000));
+    const daySpent = BigInt(sp[1]) === today ? sp[3] : 0n;
+    setText("sSpent", eth[0] ? `${formatEther(daySpent)} of ${formatEther(eth[3])} ${NATIVE_SYMBOL} today` : "—");
+    $<HTMLElement>("capFill").style.width = eth[0] && eth[3] > 0n ? Math.min(100, Number((daySpent * 100n) / eth[3])) + "%" : "0%";
+    setText("sHold", eth[0] && eth[4] > 0n ? `hold above ${formatEther(eth[4])} ${NATIVE_SYMBOL}` : "no hold threshold");
+
+    const isOwner = me && getAddress(me) === getAddress(s.owner);
+    $("ownerCtl").hidden = !isOwner;
+    $<HTMLButtonElement>("bFreeze").hidden = s.frozen;
+    $<HTMLButtonElement>("bUnfreeze").hidden = !s.frozen;
+    setText("whoami", me ? (isOwner ? `Connected as owner ${short(me)}` : `Connected ${short(me)} — not the owner, read-only`) : "Not connected — read-only");
+
+    renderHeld(held, !!isOwner);
+    $("tBody").hidden = false;
+    status("Up to date · " + new Date().toLocaleTimeString(), "ok");
+  } catch (e) {
+    if (mine !== seq) return;
+    $("tBody").hidden = true;
+    status((e as Error).message.split("\n")[0], "err");
+  }
+}
+
+async function fetchHeld(gateDelay: bigint): Promise<HeldMove[]> {
+  const head = await pub.getBlockNumber();
+  // BSC blocks are ~0.75s. Cover this vault's delay, and stay inside one 45_000-block request when the delay is a few hours.
+  const seconds = gateDelay > 6n * 3600n ? gateDelay : 6n * 3600n;
+  const blocks = (seconds * 4n) / 3n + 8_000n;
+  const lookback = blocks > LOG_HISTORY ? LOG_HISTORY : blocks;
+  const from = head > lookback ? head - lookback : 0n;
+  return listHeld(pub, vault!, from);
+}
+
+function renderHeld(held: HeldMove[], isOwner: boolean) {
+  const list = $("heldList");
+  list.replaceChildren();
+  setText("heldCount", String(held.length));
+  if (!held.length) {
+    const li = document.createElement("li");
+    li.className = "empty";
+    li.textContent = "Nothing waiting at the gate.";
+    list.append(li);
+    return;
+  }
+  for (const h of held) {
+    const li = document.createElement("li");
+    const ready = h.eta.getTime() <= Date.now();
+    const cells: [string, string][] = [
+      ["id", short(h.id)],
+      ["to", short(h.target)],
+      ["value", formatEther(h.value) + " " + NATIVE_SYMBOL],
+      ["eta", ready ? "ready" : h.eta.toLocaleString()],
+    ];
+    for (const [k, v] of cells) {
+      const s = document.createElement("span");
+      s.className = k;
+      s.textContent = v;
+      li.append(s);
+    }
+    if (isOwner) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn-line";
+      b.textContent = "Drop gate";
+      b.addEventListener("click", () => write("cancel", [h.id]));
+      li.append(b);
+    }
+    list.append(li);
+  }
+}
+
+async function write(fn: "freeze" | "unfreeze" | "cancel", args: readonly unknown[]) {
+  if (!window.ethereum || !me || !vault) return;
+  const wallet = createWalletClient({ chain: bscChain, transport: custom(window.ethereum), account: me });
+  try {
+    const chainId = await wallet.getChainId();
+    if (chainId !== bscChain.id) {
+      try { await wallet.switchChain({ id: bscChain.id }); }
+      catch { await wallet.addChain({ chain: bscChain }); }
+    }
+    status("Simulating…");
+    let request;
+    try {
+      ({ request } = await pub.simulateContract({
+        account: me, address: vault, abi: vaubanVaultAbi,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        functionName: fn, args: args as any,
+      }));
+    } catch (e) { toRefused(e); }
+    status("Confirm in your wallet…");
+    const hash: Hex = await wallet.writeContract(request!);
+    status("Waiting for block…");
+    const rcpt = await pub.waitForTransactionReceipt({ hash });
+    if (rcpt.status !== "success") throw new Error(`${fn} reverted on-chain: ${hash}`);
+    await load();
+  } catch (e) {
+    status(e instanceof Refused ? e.message : (e as Error).message.split("\n")[0], "err");
+  }
+}
+
+async function connect() {
+  if (!window.ethereum) { status("No browser wallet found. Reading still works.", "err"); return; }
+  const wallet = createWalletClient({ chain: bscChain, transport: custom(window.ethereum) });
+  const [a] = await wallet.requestAddresses();
+  me = a;
+  setText("bConnect", short(a));
+  await load();
+}
+
+function open(addr: string) {
+  if (!isAddress(addr)) { status("That is not a valid address.", "err"); return; }
+  vault = getAddress(addr);
+  const qs = new URLSearchParams(location.search);
+  qs.set("vault", vault);
+  history.replaceState(null, "", location.pathname + "?" + qs.toString());
+  load();
+}
+
+function mountTable() {
+  $<HTMLFormElement>("vForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    open($<HTMLInputElement>("vAddr").value.trim());
+  });
+  $("bConnect").addEventListener("click", connect);
+  $("bFreeze").addEventListener("click", () => write("freeze", []));
+  $("bUnfreeze").addEventListener("click", () => write("unfreeze", []));
+  $("bRefresh").addEventListener("click", load);
+  $<HTMLFormElement>("rForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    rule();
+  });
+  const q = new URLSearchParams(location.search).get("vault");
+  if (q) {
+    $<HTMLInputElement>("vAddr").value = q;
+    open(q);
+  }
+}
+
+window.mountTable = mountTable;
+
+function verdict(text: string, kind: "pass" | "hold" | "refused" | "err") {
+  const el = $("rOut");
+  el.textContent = text;
+  el.dataset.kind = kind;
+}
+
+async function rule() {
+  if (!vault) return;
+  const to = $<HTMLInputElement>("rTo").value.trim();
+  const eth = $<HTMLInputElement>("rValue").value.trim() || "0";
+  const data = ($<HTMLInputElement>("rData").value.trim() || "0x") as Hex;
+  if (!isAddress(to)) return verdict("Target is not a valid address.", "err");
+  if (!isHex(data) || data.length % 2) return verdict("Calldata must be 0x followed by whole bytes.", "err");
+  let value: bigint;
+  try { value = parseEther(eth); } catch { return verdict("Value must be a number of BNB.", "err"); }
+  if (value < 0n) return verdict("Value cannot be negative.", "err");
+  verdict("Asking the vault…", "hold");
+  try {
+    const r = await pub.readContract({ address: vault, abi: vaubanVaultAbi, functionName: "rule", args: [getAddress(to), value, data] });
+    if (r === 0) verdict("PASS — the vault would let this call land now.", "pass");
+    else verdict("HOLD — the vault would queue this at the gate. It lands after the delay, and the owner can cancel it.", "hold");
+  } catch (e) {
+    try { toRefused(e); } catch (r) {
+      if (r instanceof Refused) return verdict(`REFUSED at the ${r.rampart.toUpperCase()} — ${r.reason}.`, "refused");
+      return verdict((r as Error).message.split("\n")[0], "err");
+    }
+  }
+}
+
